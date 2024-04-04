@@ -2,7 +2,12 @@ import React from 'react'
 import { useGetOrdersQuery } from '../state/pizzaApi'
 
 export default function OrderList() {
-  const { data: orders } = useGetOrdersQuery()
+  const {
+    data: orders,
+    error: orderHistoryError,
+    isLoading: ordersLoading,
+    isFetching: ordersFetching,
+  } = useGetOrdersQuery()
 
   return (
     <div id="orderList">
