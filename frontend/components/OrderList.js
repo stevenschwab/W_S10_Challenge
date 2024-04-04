@@ -3,17 +3,18 @@ import { useGetOrdersQuery } from '../state/pizzaApi'
 
 export default function OrderList() {
   const { data: orders } = useGetOrdersQuery()
-  
+
   return (
     <div id="orderList">
       <h2>Pizza Orders</h2>
       <ol>
         {
-          orders.map(() => {
+          orders?.map(order => {
+            const { customer, size, toppings } = order
             return (
-              <li key={1}>
+              <li key={order.id}>
                 <div>
-                  order details here
+                  {customer} ordered a size {size} with {toppings.length} toppings
                 </div>
               </li>
             )
