@@ -7,9 +7,17 @@ export const pizzaApi = createApi({
         getOrders: builder.query({
             query: () => 'history'
         }),
-    })
+        createOrder: builder.mutation({
+            query: order => ({
+                url: 'order',
+                method: 'POST',
+                body: order,
+            }),
+        }),
+    }),
 })
 
 export const {
     useGetOrdersQuery,
+    useCreateOrderMutation,
 } = pizzaApi
