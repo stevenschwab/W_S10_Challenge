@@ -1,4 +1,5 @@
 import React from 'react'
+import { useCreateOrderMutation } from '../state/pizzaApi'
 
 const initialFormState = { // suggested
   fullName: '',
@@ -11,8 +12,10 @@ const initialFormState = { // suggested
 }
 
 export default function PizzaForm() {
+  const [createOrder] = useCreateOrderMutation()
+
   return (
-    <form>
+    <form onSubmit={() => createOrder()}>
       <h2>Pizza Form</h2>
       {true && <div className='pending'>Order in progress...</div>}
       {true && <div className='failure'>Order failed: fullName is required</div>}
