@@ -15,6 +15,7 @@ export const pizzaApi = createApi({
                 method: 'POST',
                 body: order,
             }),
+            invalidatesTags: ['Orders'],
         }),
     }),
 })
