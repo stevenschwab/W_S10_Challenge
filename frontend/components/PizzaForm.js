@@ -54,6 +54,8 @@ export default function PizzaForm() {
             name="fullName"
             placeholder="Type full name"
             type="text"
+            onChange={onNameChange}
+            value={state.fullName}
           />
         </div>
       </div>
