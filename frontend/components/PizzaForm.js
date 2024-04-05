@@ -34,6 +34,9 @@ export default function PizzaForm() {
   const onNameChange = ({ target: { value } }) => {
     dispatch({ type: CHANGE_NAME, payload: value })
   }
+  const onSizeChange = ({ target: { value } }) => {
+    dispatch({ type: CHANGE_SIZE, payload: value })
+  }
 
   return (
     <form onSubmit={() => createOrder()}>
@@ -63,7 +66,7 @@ export default function PizzaForm() {
       <div className="input-group">
         <div>
           <label htmlFor="size">Size</label><br />
-          <select data-testid="sizeSelect" id="size" name="size">
+          <select data-testid="sizeSelect" id="size" name="size" onChange={onSizeChange} value={state.size}>
             <option value="">----Choose size----</option>
             <option value="S">Small</option>
             <option value="M">Medium</option>
