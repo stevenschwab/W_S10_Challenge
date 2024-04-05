@@ -71,7 +71,7 @@ export default function PizzaForm() {
         orderCreating && <div className='pending'>Order in progress...</div>
       }
       {
-        orderCreationError && <div className='failure'>Order failed: {orderCreationError.message}</div>
+        orderCreationError && <div className='failure'>Order failed: {orderCreationError.data.message}</div>
       }
 
       <div className="input-group">
