@@ -37,9 +37,28 @@ export default function PizzaForm() {
   const onSizeChange = ({ target: { value } }) => {
     dispatch({ type: CHANGE_SIZE, payload: value })
   }
+  const onToppingChange = () => {
+    
+  }
+  const resetForm = () => {
+    dispatch({ type: CHANGE_NAME, payload: '' })
+    dispatch({ type: CHANGE_SIZE, payload: '' })
+    dispatch({ type: CHANGE_TOPPING, payload: '' })
+  }
+
+  const onNewOrder = async evt => {
+    evt.preventDefault()
+    const { fullName, size, toppings } = state
+    createOrder({ fullName, size, toppings })
+    .unwrap()
+    .then(() => {
+      resetForm()
+    })
+    .catch(err => { })
+  }
 
   return (
-    <form onSubmit={() => createOrder()}>
+    <form onSubmit={onNewOrder}>
       <h2>Pizza Form</h2>
       {
         orderCreating && <div className='pending'>Order in progress...</div>
@@ -77,7 +96,7 @@ export default function PizzaForm() {
 
       <div className="input-group">
         <label>
-          <input data-testid="checkPepperoni" name="1" type="checkbox" />
+          <input data-testid="checkPepperoni" name="1" type="checkbox" onChange={onToppingChange} />
           Pepperoni<br /></label>
         <label>
           <input data-testid="checkGreenpeppers" name="2" type="checkbox" />
