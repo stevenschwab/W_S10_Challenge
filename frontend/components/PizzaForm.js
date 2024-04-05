@@ -15,6 +15,7 @@ const initialFormState = {
   '4': false,
   '5': false,
 }
+
 const reducer = (state, action) => {
   switch (action.type) {
     case CHANGE_NAME:
@@ -67,12 +68,8 @@ export default function PizzaForm() {
   return (
     <form onSubmit={onNewOrder}>
       <h2>Pizza Form</h2>
-      {
-        orderCreating && <div className='pending'>Order in progress...</div>
-      }
-      {
-        orderCreationError && <div className='failure'>Order failed: {orderCreationError.data.message}</div>
-      }
+      { orderCreating && <div className='pending'>Order in progress...</div> }
+      { orderCreationError && <div className='failure'>Order failed: {orderCreationError.data.message}</div> }
 
       <div className="input-group">
         <div>
