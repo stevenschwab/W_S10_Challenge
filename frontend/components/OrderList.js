@@ -1,13 +1,13 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { changeFilterSize } from '../state/filtersSlice'
 import { useGetOrdersQuery } from '../state/pizzaApi'
 
 export default function OrderList() {
-  const {
-    data: orders,
-    error: orderHistoryError,
-    isLoading: ordersLoading,
-    isFetching: ordersFetching,
-  } = useGetOrdersQuery()
+  const { data: orders, error: orderHistoryError, isLoading: ordersLoading, isFetching: ordersFetching } = useGetOrdersQuery()
+  
+  const filterSize = useSelector(st => st.filters.size)
+  const dispatch = useDispatch()
 
   return (
     <div id="orderList">
@@ -30,11 +30,13 @@ export default function OrderList() {
         Filter by size:
         {
           ['All', 'S', 'M', 'L'].map(size => {
-            const className = `button-filter${size === 'All' ? ' active' : ''}`
+            const className = `button-filter${size === filterSize ? ' active' : ''}`
             return <button
               data-testid={`filterBtn${size}`}
               className={className}
-              key={size}>{size}</button>
+              key={size}
+              onClick={() => dispatch(changeFilterSize(size))}
+              >{size}</button>
           })
         }
       </div>

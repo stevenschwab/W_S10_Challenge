@@ -6,14 +6,14 @@ export const filtersSlice = createSlice({
         size: "All",
     },
     reducers: {
-        changeFilter: ({ state, size }) => {
-            state.size = size
+        changeFilterSize: (state, action) => {
+            state.size = action.payload
         },
     }
 })
 
 export const {
-    changeFilter,
+    changeFilterSize,
 } = filtersSlice.actions
 
 export default filtersSlice.reducer
