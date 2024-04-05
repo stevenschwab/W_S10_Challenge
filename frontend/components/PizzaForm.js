@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { useCreateOrderMutation } from '../state/pizzaApi'
+
+const CHANGE_NAME = 'CHANGE_NAME'
+const CHANGE_SIZE = 'CHANGE_SIZE'
+const CHANGE_TOPPING = 'CHANGE_TOPPING'
 
 const initialFormState = { // suggested
   fullName: '',
@@ -9,6 +13,18 @@ const initialFormState = { // suggested
   '3': false,
   '4': false,
   '5': false,
+}
+const reducer = (state, action) => {
+  switch (action.type) {
+    case CHANGE_NAME:
+      return { ...state, fullName: action.payload }
+    case CHANGE_SIZE:
+      return { ...state, size: action.payload }
+    case CHANGE_TOPPING:
+      return { ...state, [action.payload]: !initialFormState[action.payload]}
+    default:
+      return state
+  }
 }
 
 export default function PizzaForm() {
