@@ -18,7 +18,7 @@ export default function OrderList() {
               return (filterSize === "All") || (filterSize === order.size) 
             })
             .map(order => {
-              const { customer, size, toppings } = order
+              const { customer, size, toppings = [] } = order
               let toppingsText = 'no toppings'
               if (toppings.length === 1) {
                 toppingsText = '1 topping'
