@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeFilterSize } from '../state/filtersSlice'
+import { selectSizeFilter } from '../state/filtersSlice'
 import { useGetOrdersQuery } from '../state/pizzaApi'
 
 export default function OrderList() {
@@ -14,16 +14,19 @@ export default function OrderList() {
       <h2>Pizza Orders</h2>
       <ol>
         {
-          orders?.map(order => {
-            const { customer, size, toppings } = order
-            return (
-              <li key={order.id}>
-                <div>
-                  {customer} ordered a size {size} with {toppings.length} toppings
-                </div>
-              </li>
-            )
-          })
+          orders?.filter(order => {
+              return (filterSize === "All") || (filterSize === order.size) 
+            })
+            .map(order => {
+              const { customer, size, toppings } = order
+              return (
+                <li key={order.id}>
+                  <div>
+                    {customer} ordered a size {size} with {toppings.length} toppings
+                  </div>
+                </li>
+              )
+            })
         }
       </ol>
       <div id="sizeFilters">
@@ -35,7 +38,7 @@ export default function OrderList() {
               data-testid={`filterBtn${size}`}
               className={className}
               key={size}
-              onClick={() => dispatch(changeFilterSize(size))}
+              onClick={() => dispatch(selectSizeFilter(size))}
               >{size}</button>
           })
         }
