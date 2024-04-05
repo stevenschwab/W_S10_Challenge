@@ -22,8 +22,10 @@ const reducer = (state, action) => {
       return { ...state, fullName: action.payload }
     case CHANGE_SIZE:
       return { ...state, size: action.payload }
-    case CHANGE_TOPPING:
-      return { ...state, [action.payload.name]: action.payload.checked }
+    case CHANGE_TOPPING: {
+      const { name, checked } = action.payload
+      return { ...state, [name]: checked }
+    }
     case RESET_FORM:
       return { ...initialFormState }
     default:
