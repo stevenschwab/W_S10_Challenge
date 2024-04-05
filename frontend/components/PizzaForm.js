@@ -20,8 +20,12 @@ export default function PizzaForm() {
   return (
     <form onSubmit={() => createOrder()}>
       <h2>Pizza Form</h2>
-      {true && <div className='pending'>Order in progress...</div>}
-      {true && <div className='failure'>Order failed: fullName is required</div>}
+      {
+        orderCreating && <div className='pending'>Order in progress...</div>
+      }
+      {
+        orderCreationError && <div className='failure'>Order failed: {orderCreationError.message}</div>
+      }
 
       <div className="input-group">
         <div>
