@@ -28,10 +28,12 @@ const reducer = (state, action) => {
 }
 
 export default function PizzaForm() {
-  const [createOrder, {
-    error: orderCreationError,
-    isLoading: orderCreating,
-  }] = useCreateOrderMutation()
+  const [state, dispatch] = useReducer(reducer, initialFormState)
+  const [createOrder, { error: orderCreationError, isLoading: orderCreating }] = useCreateOrderMutation()
+
+  const onNameChange = ({ target: { value } }) => {
+    dispatch({ type: CHANGE_NAME, payload: value })
+  }
 
   return (
     <form onSubmit={() => createOrder()}>
