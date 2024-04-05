@@ -19,10 +19,17 @@ export default function OrderList() {
             })
             .map(order => {
               const { customer, size, toppings } = order
+              let toppingsText = 'no toppings'
+              if (toppings.length === 1) {
+                toppingsText = '1 topping'
+              } else if (toppings.length > 1) {
+                toppingsText = `${toppings.length} toppings`
+              }
+
               return (
                 <li key={order.id}>
                   <div>
-                    {customer} ordered a size {size} with {toppings.length} toppings
+                    {customer} ordered a size {size} with {toppingsText}
                   </div>
                 </li>
               )
