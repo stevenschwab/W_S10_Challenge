@@ -12,7 +12,10 @@ const initialFormState = { // suggested
 }
 
 export default function PizzaForm() {
-  const [createOrder] = useCreateOrderMutation()
+  const [createOrder, {
+    error: orderCreationError,
+    isLoading: orderCreating,
+  }] = useCreateOrderMutation()
 
   return (
     <form onSubmit={() => createOrder()}>
