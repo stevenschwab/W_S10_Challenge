@@ -103,7 +103,7 @@ export default function PizzaForm() {
 
       <div className="input-group">
         <label>
-          <input data-testid="checkPepperoni" name="1" type="checkbox" onChange={onToppingChange} checked={state.name} />
+          <input data-testid="checkPepperoni" name="1" type="checkbox" onChange={onToppingChange} />
           Pepperoni<br /></label>
         <label>
           <input data-testid="checkGreenpeppers" name="2" type="checkbox" onChange={onToppingChange} />
